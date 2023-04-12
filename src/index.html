@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Siebel HistoryBook</title>
+</head>
+<body class="bg-teal-500 text-white p-0 m-0">
+    <div class="flex space-between items-center h-full">
+        <div class="w-[20%]"></div>
+        <div id="root" class="w-[60%] py-[5em]">
+            <!--ROOT-->
+            <h1 class="text-7xl font-bold drop-shadow-lg">
+                Siebel Storyboard
+            </h1>
+            <br>
+            <p class="w-[70%]">
+                Glosario de recursos para desarrollo front con Siebel, listado de componentes a utilizar, puedes guiarte del indice para consultar cada componente.
+            </p>
+            <br>
+            <br>
+            <span class="font-bold text-lg">Indice</span>
+            <br>
+            <br>
+            <ul class="w-full text-sm font-medium text-gray-900 bg-white rounded-lg dark:text-gray-500 overflow-hidden shadow-lg">
+                <li class="transition cursor-pointer w-full px-4 py-2 border-b border-gray-200 hover:bg-gray-100">
+                    <a href="#texto" class="decoration-none block">Texto</a>
+                </li>
+                <li class="transition cursor-pointer w-full px-4 py-2 border-b border-gray-200 hover:bg-gray-100">
+                    <a href="#botones" class="decoration-none block">Bótones</a>
+                </li>
+                <li class="transition cursor-pointer w-full px-4 py-2 border-b border-gray-200 hover:bg-gray-100">Div</li>
+                <li class="transition cursor-pointer w-full px-4 py-2 border-b border-gray-200 hover:bg-gray-100">VStack</li>
+                <li class="transition cursor-pointer w-full px-4 py-2 border-b border-gray-200 hover:bg-gray-100">Hstack</li>
+                <li class="transition cursor-pointer w-full px-4 py-2 border-b border-gray-200 hover:bg-gray-100">Tabla</li>
+                <li class="transition cursor-pointer w-full px-4 py-2 border-b border-gray-200 hover:bg-gray-100">Select</li>
+            </ul>
+            <br>
+            <div class="my-[5em] font-bold text-2xl p-4 rounded-lg bg-gray-700 shadow-lg">
+                Códigos y ejemplos
+            </div>
+            <br>
+            <p id="texto" class="font-bold text-lg mb-2 p-2 bg-teal-700 rounded">Texto</p>
+            <div class="p-4 rounded-lg shadow-lg bg-white text-gray-500">
+                <div class="flex space-between items-start">
+                    <div class="w-[50%] text-gray-500 p-4">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci nihil, harum quam exercitationem quidem impedit ea corrupti debitis officia eos maiores aliquam in incidunt minus illum corporis tenetur expedita pariatur.
+                    </div>
+                    <div class="w-[50%] bg-gray-800 text-white rounded-lg p-4 h-[10em] flex items-center">
+<pre class="w-full h-full p-4">
+<i class="text-blue-500">new</i> <b class="text-teal-500">TextElement</b>(<i class="text-red-300">"Hola a todos"</i>,{ 
+    <i class="text-cyan-300">class</i>: [<i class="text-red-300">"color-texto"</i>] 
+});
+</pre>
+                    </div>
+                </div>
+                <br>
+                <hr class="text-gray-300">
+                <br>
+                <b>output:</b> <span class="ml-[1em] text-gray-500">Hola a todos</span>
+                <br>
+                <br>
+            </div>
+            <br>
+            <p id="botones" class="font-bold text-lg mt-[2em] mb-2 p-2 bg-teal-700 rounded">Bótones</p>
+            <div class="p-4 rounded-lg shadow-lg bg-white text-gray-500">
+                <div class="flex space-between items-start">
+                    <div class="w-[50%] text-gray-500 p-4">
+                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci nihil, harum quam exercitationem quidem impedit ea corrupti debitis officia eos maiores aliquam in incidunt minus illum corporis tenetur expedita pariatur.
+                    </div>
+                    <div class="w-[50%] bg-gray-800 text-white rounded-lg p-4 h-[13em] flex items-center">
+<pre class="w-full h-full p-4">
+<i class="text-blue-500">new</i> <b class="text-teal-500">ButtonElement</b>(<i class="text-red-300">"Click aquí"</i>,{ 
+    <i class="text-yellow-300">target:</i> () => { 
+        <i class="text-yellow-300">alert</i>(<i class="text-red-300">"hola cómo estas"</i>);
+    }, 
+    <i class="text-cyan-300">class</i>: [<i class="text-red-300">"siebel-primary"</i>] 
+});
+</pre>
+                    </div>
+                </div>
+                <br>
+                <hr class="text-gray-300">
+                <br>
+                <b>output:</b> <button onclick="alert('hola cómo estas')" class="ml-[1em] transition px-3 py-[.35em] bg-red-500 hover:bg-red-600 text-white rounded-sm shadow">click aquí</button>
+                <br>
+                <br>
+            </div>
+        </div>
+        <div class="w-[20%]"></div>
+    </div>
+</body>
+</html>
