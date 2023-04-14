@@ -6,6 +6,12 @@ import { buildUiList,textDarkBlock,shadeTextBlock, exampleBlockContent } from '.
 class CenterBlock extends Controller {
 
     lorem = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci nihil, harum quam exercitationem quidem impedit ea corrupti debitis officia eos maiores aliquam in incidunt minus illum corporis tenetur expedita pariatur."
+    stylei = "text-cyan-300";
+    stylev = "text-teal-300";
+    stylel = "text-red-300";
+    styler = "text-purple-300";
+    stylen = "text-blue-400";
+    stylef = "text-yellow-300";
 
     constructor() {
         super();
@@ -13,7 +19,7 @@ class CenterBlock extends Controller {
 
     initPage() {
         console.log("Welcome to Siebel StoryBoard!!!");
-        this.shadeText("Indice",'<i class="fa fa-list"></i>');
+        this.shadeText("Indice",`<i class="fa fa-list"></i>`);
         this.BList();
         this.textBlock();
         this.shadeText("Texto");
@@ -30,18 +36,23 @@ class CenterBlock extends Controller {
         this.exmapleContentHStack();
         this.shadeText("Table");
         this.exmapleContentTable();
+        this.shadeText("Select");
+        this.exmapleContentSelect();
+        this.shadeText("input");
+        this.exmapleContentInput();
     }
 
     BList() {
         let items = [
-            { name: 'Texto', href: 'texto'},
-            { name: 'Button', href: 'button' },
-            { name: 'X-Button', href: 'x-button' },
-            { name: 'Div', href: 'div' },
-            { name: 'VStack', href: 'vstack' },
-            { name: 'HStack', href: 'hstack' },
-            { name: 'Table', href: 'table' },
-            { name: 'Select', href: 'select' },
+            { name: 'Texto', href: 'texto',icon: 'fa fa-caret-right' },
+            { name: 'Button', href: 'button',icon: 'fa fa-caret-right' },
+            { name: 'X-Button', href: 'x-button',icon: 'fa fa-caret-right' },
+            { name: 'Div', href: 'div',icon: 'fa fa-caret-right' },
+            { name: 'VStack', href: 'vstack',icon: 'fa fa-caret-right' },
+            { name: 'HStack', href: 'hstack',icon: 'fa fa-caret-right' },
+            { name: 'Table', href: 'table',icon: 'fa fa-caret-right' },
+            { name: 'Select', href: 'select',icon: 'fa fa-caret-right' },
+            { name: 'Input', href: 'input',icon: 'fa fa-caret-right' },
         ]
 
         buildUiList(items,this.center);
@@ -160,26 +171,19 @@ class CenterBlock extends Controller {
     }
 
     exmapleContentTable() {
-        let stylei = "text-cyan-300";
-        let stylev = "text-teal-300";
-        let stylel = "text-red-300";
-        let styler = "text-purple-300";
-        let stylen = "text-blue-400";
-        let stylef = "text-yellow-300";
-
-        let code = `<i class="${stylen}">var</i> <i class="${stylei}">table</i> = <span class="${stylef}">Table</span><{ <br>
+        let code = `<i class="${this.stylen}">var</i> <i class="${this.stylei}">table</i> = <span class="${this.stylef}">Table</span><{ <br>
             <div class="ml-[1em]">
-            <i class="${stylei}">id</i>: <i class="${stylev}">string</i>, <br>
-                <i class="${stylei}">name</i>: <i class="${stylev}">string</i> <br>
+            <i class="${this.stylei}">id</i>: <i class="${this.stylev}">string</i>, <br>
+                <i class="${this.stylei}">name</i>: <i class="${this.stylev}">string</i> <br>
             </div>
         }>([<br>
             <div class="ml-[1em]">
                 {
                     <div class="ml-[1em]">
-                        <i class="${stylei}">header</i>: { <i class="${stylei}">title</i>: <i class="${stylel}">"ID"</i> }, <br>
-                        <i class="${stylei}">data</i>: (<i class="${stylei}">_row</i>) => { <br>
+                        <i class="${this.stylei}">header</i>: { <i class="${this.stylei}">title</i>: <i class="${this.stylel}">"ID"</i> }, <br>
+                        <i class="${this.stylei}">data</i>: (<i class="${this.stylei}">_row</i>) => { <br>
                             <div class="ml-[1em] flex flex-row">
-                                <i class="${styler}">return</i> <i class="${stylen} mx-[1em]">new</i> <i class="${stylev}">TextElement</i>(<i class="${stylei}">_row.id</i>);
+                                <i class="${this.styler}">return</i> <i class="${this.stylen} mx-[1em]">new</i> <i class="${this.stylev}">TextElement</i>(<i class="${this.stylei}">_row.id</i>);
                             </div>
                         }
                     </div>
@@ -188,10 +192,10 @@ class CenterBlock extends Controller {
             <div class="ml-[1em]">
                 {
                     <div class="ml-[1em]">
-                        <i class="${stylei}">header</i>: { <i class="${stylei}">title</i>: <i class="${stylel}">"Nombre"</i> }, <br>
-                        <i class="${stylei}">data</i>: (<i class="${stylei}">_row</i>) => { <br>
+                        <i class="${this.stylei}">header</i>: { <i class="${this.stylei}">title</i>: <i class="${this.stylel}">"Nombre"</i> }, <br>
+                        <i class="${this.stylei}">data</i>: (<i class="${this.stylei}">_row</i>) => { <br>
                             <div class="ml-[1em] flex flex-row">
-                                <i class="${styler}">return</i> <i class="${stylen} mx-[1em]">new</i> <i class="${stylev}">TextElement</i>(<i class="${stylei}">_row.name</i>);
+                                <i class="${this.styler}">return</i> <i class="${this.stylen} mx-[1em]">new</i> <i class="${this.stylev}">TextElement</i>(<i class="${this.stylei}">_row.name</i>);
                             </div>
                         }
                     </div>
@@ -203,7 +207,7 @@ class CenterBlock extends Controller {
         <br>
 
         <i class="text-gray-400">// asigno la data a la tabla</i> <br>
-        <i class="${stylei}">table.data</i> = <i class="${stylei}">sourceData</i>;
+        <i class="${this.stylei}">table.data</i> = <i class="${this.stylei}">sourceData</i>;
 
         <br>
         <br>
@@ -242,6 +246,108 @@ class CenterBlock extends Controller {
                 
             let right = divided[1];
                 right.className = 'bg-gray-800 text-white rounded-lg p-3 flex items-center h-[20em] w-[22em] overflow-y-scroll overflow-x-scroll';
+        });
+    }
+
+    exmapleContentSelect() {
+        let code = `<i class="${this.stylen}">let</i> <i class="${this.stylei}">select</i> = <i class="${this.stylen}">new</i> <i class="${this.stylev}">SelectElement</i>({
+            <div class="ml-[1em]">
+                <i class="${this.stylei}">tag</i>: <i class="${this.stylel}">'relationType'</i>, <br>
+                <i class="${this.stylei}">title</i>: <i class="${this.stylel}">'Relación'</i>, <br>
+                <i class="${this.stylei}">model</i>: <i class="${this.stylel}">'relation'</i>, <br>
+                <i class="${this.stylei}">buttonIcon</i>: <i class="${this.stylen}">new</i> <i class="${this.stylev}">GenericIcon</i>(<br>
+                    <div class="ml-[1em]">
+                        <i class="${this.stylei}">IconDAV</i>,{ <br> 
+                                <div class="ml-[1em]">
+                                    <i class="${this.stylei}">class</i>: [ <br> 
+                                    <i class="${this.stylel}">'icon-rotate'</i>, <br> 
+                                    <i class="${this.stylel}">'reflect-horizontal'</i> <br>
+                                </div>
+                            ]})
+                    </div>
+            </div>
+        })
+
+        <br>
+        <br>
+        
+        <i class="${this.stylei}">select.data</i> = [{ <br>
+            <div class="ml-[1em]">
+                <i class="${this.stylei}">name</i>: <i class="${this.stylel}">'Valor 1'</i>, <br>
+                <i class="${this.stylei}">value</i>: 1 <br>
+            </div>
+        }, { <br>
+            <div class="ml-[1em]">
+                <i class="${this.stylei}">name</i>: <i class="${this.stylel}">'Valor 2'</i>, <br>
+                <i class="${this.stylei}">value</i>: 2 <br>
+            </div>
+        }, { <br>
+            <div class="ml-[1em]">
+                <i class="${this.stylei}">name</i>: <i class="${this.stylel}">'Valor 3'</i>, <br>
+                <i class="${this.stylei}">value</i>: 3 <br>
+            </div>
+        }];
+
+        <br>
+        <br>
+        `;
+        let output = `<div class="flex justify-start items-start">
+            <b>output:</b> <div class="ml-[1em] flex flex-col">
+                <b class="text-[10px]">Relación</b>
+                <select class="border px-3 py-1">
+                    <option value="0">Seleccione</option>
+                    <option value="1">Valor 1</option>
+                    <option value="2">Valor 2</option>
+                    <option value="3">Valor 3</option>
+                </select>
+            </div>
+        </div>`;
+        exampleBlockContent(this.lorem,code,output,this.center).then(con => {
+            let divided = con.querySelectorAll('.divided div');
+
+            let right = divided[1];
+                right.classList.add('h-[18em]','w-[60%]','overflow-x-scroll')
+        })
+    }
+
+    exmapleContentInput() {
+        let code = `<i class="${this.stylen}">let</i> <i class="${this.stylei}">inputNumber</i> = <i class="${this.stylen}">new</i> <i class="${this.stylev}">InputElement</i>({
+            <div class="ml-[1em]">
+                <i class="${this.stylei}">tag</i>: <i class="${this.stylel}">'idNum'</i>, <br>
+                <i class="${this.stylei}">title</i>: <i class="${this.stylel}">'Número de Identificación'</i>, <br>
+                <i class="${this.stylei}">model</i>: <i class="${this.stylel}">'idNum'</i>, <br>
+                <i class="${this.stylei}">typeNumber</i>: <i class="${this.stylen}">true</i>, <br>
+                <i class="${this.stylei}">maxLength</i>: 10 <br>
+            </div>
+        });
+        <br>
+        <br>
+        <i class="${this.stylen}">let</i> <i class="${this.stylei}">inputText</i> = <i class="${this.stylen}">new</i> <i class="${this.stylev}">InputElement</i>({
+            <div class="ml-[1em]">
+                <i class="${this.stylei}">tag</i>: <i class="${this.stylel}">'idtext'</i>, <br>
+                <i class="${this.stylei}">title</i>: <i class="${this.stylel}">'Nómbre'</i>, <br>
+                <i class="${this.stylei}">model</i>: <i class="${this.stylel}">'name'</i>, <br>
+            </div>
+        });
+        <br>
+        `;
+        let output = `<div class="flex flex-row">
+            <b>output:</b> 
+            <div class="ml-[1em] flex flex-col">
+                <b class="text-[10px]">Número de identificación</b>
+                <input type="number" value="0" max="10" min="0" class="outline-0 ring-1 ring-gray-400 px-4 py-1 w-full rounded text-sm"  />
+            </div> 
+            <div class="ml-[1em] flex flex-col">
+                <b class="text-[10px]">Nómbre</b>
+                <input type="text" class="outline-0 ring-1 ring-gray-400 px-4 py-1 w-full rounded text-sm"  />
+            </div>
+        </div>`;
+
+        exampleBlockContent(this.lorem,code,output,this.center).then(con => {
+            let divided = con.querySelectorAll('.divided div');
+
+            let right = divided[1];
+                right.classList.add('h-[18em]','w-[60%]')
         });
     }
 }

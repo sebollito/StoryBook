@@ -9,12 +9,15 @@ const buildUiList = async function(items:any,parent?:HTMLElement) {
     items.map((elm: any, index:number) => {
 
         let item = document.createElement('li');
-            item.className = 'transition cursor-pointer w-full px-4 py-2 border-b border-gray-200 hover:bg-gray-100';
+            item.className = 'transition cursor-pointer w-full px-4 py-2 border-b border-gray-200 hover:bg-gray-100 flex flex-row items-center';
+        let icon = document.createElement('i');
+            icon.className = elm.icon;
         let a = document.createElement('a')
-            a.className = 'decoration-none block';
+            a.className = 'decoration-none block ml-[1em]';
             a.innerText = elm.name
             a.href = "#" + elm.href
 
+        item.appendChild(icon);
         item.appendChild(a);
         list.appendChild(item);
         
