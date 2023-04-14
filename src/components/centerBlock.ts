@@ -1,6 +1,6 @@
 import Controller from '../Controller'
 import { XAppButton } from 'ait-bpd-common';
-import { buildUiList,textDarkBlock,shadeTextBlock, exampleBlockContent } from './ElementCollections';
+import { buildUiList,textDarkBlock,shadeTextBlock, exampleBlockContent, implementScrollUp } from './ElementCollections';
 
 
 class CenterBlock extends Controller {
@@ -15,6 +15,7 @@ class CenterBlock extends Controller {
 
     constructor() {
         super();
+        implementScrollUp();
     }
 
     initPage() {

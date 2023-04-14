@@ -1,4 +1,28 @@
 
+const implementScrollUp = async function() {
+    let btnUp = document.getElementById('btn-browser-up');
+
+    window.document.addEventListener('scroll',(w) => {
+        let doc = document.scrollingElement;
+        
+        if(doc.scrollTop > 750)
+        {
+            btnUp.classList.add('active');
+        }
+        else
+        {
+            btnUp.classList.remove('active');
+        }
+    })
+
+    btnUp.onclick = (e) => {
+        document.scrollingElement.scrollTo({
+            top: 0,
+            left: 0,
+            behavior: 'smooth'
+        })
+    }
+}
 
 const buildUiList = async function(items:any,parent?:HTMLElement) {
 
@@ -98,5 +122,6 @@ export {
     buildUiList,
     textDarkBlock,
     shadeTextBlock,
-    exampleBlockContent
+    exampleBlockContent,
+    implementScrollUp
 }
