@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 
-html {
+html,#center {
     scroll-behavior: smooth;
 }
 #btn-browser-up {

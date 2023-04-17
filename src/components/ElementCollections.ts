@@ -1,11 +1,10 @@
 
-const implementScrollUp = async function() {
+const implementScrollUp = async function(parent?:HTMLElement) {
     let btnUp = document.getElementById('btn-browser-up');
 
-    window.document.addEventListener('scroll',(w) => {
-        let doc = document.scrollingElement;
-        
-        if(doc.scrollTop > 750)
+    parent.addEventListener('scroll',(w) => {
+        console.log(w)
+        if(parent.scrollTop > 750)
         {
             btnUp.classList.add('active');
         }
@@ -16,7 +15,7 @@ const implementScrollUp = async function() {
     })
 
     btnUp.onclick = (e) => {
-        document.scrollingElement.scrollTo({
+        parent.scrollTo({
             top: 0,
             left: 0,
             behavior: 'smooth'
@@ -28,16 +27,16 @@ const buildUiList = async function(items:any,parent?:HTMLElement) {
 
     let container = document.createElement('div');
     let list = document.createElement('ul');
-        list.className = "w-full text-sm font-medium text-gray-900 bg-white rounded-lg dark:text-gray-500 overflow-hidden shadow-lg";
+        list.className = "w-full text-white font-medium text-gray-900";
 
     items.map((elm: any, index:number) => {
 
         let item = document.createElement('li');
-            item.className = 'transition cursor-pointer w-full px-4 py-2 border-b border-gray-200 hover:bg-gray-100 flex flex-row items-center';
+            item.className = 'transition cursor-pointer text-[12px] w-full px-[3em] py-4 hover:bg-teal-700 flex flex-row items-center';
         let icon = document.createElement('i');
             icon.className = elm.icon;
         let a = document.createElement('a')
-            a.className = 'decoration-none block ml-[1em]';
+            a.className = 'decoration-none block ml-[1em] w-full';
             a.innerText = elm.name
             a.href = "#" + elm.href
 

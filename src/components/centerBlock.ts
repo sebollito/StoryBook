@@ -15,14 +15,14 @@ class CenterBlock extends Controller {
 
     constructor() {
         super();
-        implementScrollUp();
+        implementScrollUp(this.center);
     }
 
     initPage() {
         console.log("Welcome to Siebel StoryBoard!!!");
-        this.shadeText("Indice",`<i class="fa fa-list"></i>`);
+        //this.shadeText("Indice",`<i class="fa fa-list"></i>`);
         this.BList();
-        this.textBlock();
+        //this.textBlock();
         this.shadeText("Texto");
         this.exmapleContentText();
         this.shadeText("Button");
@@ -45,7 +45,7 @@ class CenterBlock extends Controller {
 
     BList() {
         let items = [
-            { name: 'Texto', href: 'texto',icon: 'fa fa-caret-right' },
+            { name: 'Texto', href: 'texto',icon: 'fa fa-caret-right text' },
             { name: 'Button', href: 'button',icon: 'fa fa-caret-right' },
             { name: 'X-Button', href: 'x-button',icon: 'fa fa-caret-right' },
             { name: 'Div', href: 'div',icon: 'fa fa-caret-right' },
@@ -54,18 +54,19 @@ class CenterBlock extends Controller {
             { name: 'Table', href: 'table',icon: 'fa fa-caret-right' },
             { name: 'Select', href: 'select',icon: 'fa fa-caret-right' },
             { name: 'Input', href: 'input',icon: 'fa fa-caret-right' },
+            { name: 'Checkbox', href: 'checkbox',icon: 'fa fa-caret-right' },
         ]
 
-        buildUiList(items,this.center);
+        buildUiList(items,this.left);
     }
 
     textBlock() {
         let str = "Códigos y ejemplos";
-        textDarkBlock(str,this.center);
+        textDarkBlock(str,this.centerContainer);
     }
 
     shadeText(str:string,icon?:string) {
-        shadeTextBlock(str,this.center,icon);
+        shadeTextBlock(str,this.centerContainer,icon);
     }
 
     exmapleContentText() {
@@ -76,7 +77,7 @@ class CenterBlock extends Controller {
         `;
         let output = `<b>output:</b> <span class="ml-[1em] text-gray-500">Hola a todos</span>`;
 
-        exampleBlockContent(this.lorem,code,output,this.center);
+        exampleBlockContent(this.lorem,code,output,this.centerContainer);
     }
 
     exmapleContentButton() {
@@ -93,7 +94,7 @@ class CenterBlock extends Controller {
         `;
         let output = `<b>output:</b> <button onclick="alert('hola cómo estas')" class="ml-[1em] transition px-3 py-[.35em] bg-red-500 hover:bg-red-600 text-white rounded-sm shadow">click aquí</button>`;
 
-        exampleBlockContent(this.lorem,code,output,this.center).then(con => {
+        exampleBlockContent(this.lorem,code,output,this.centerContainer).then(con => {
             let right = con.querySelectorAll('.divided div')[1];
                 right.classList.add('h-[14em]');
         });
@@ -104,7 +105,7 @@ class CenterBlock extends Controller {
         let output = `<b>output:</b> <button onclick="alert('Hola a todos')" class="ml-[1em] bg-blue-700 hover:bg-blue-800 text-white rounded-sm px-3 py-1" id="auth-verify-relation">Verificar</button>`;
 
         let html = false
-        exampleBlockContent(this.lorem,code,output,this.center,html).then(con => {
+        exampleBlockContent(this.lorem,code,output,this.centerContainer,html).then(con => {
             let right = con.querySelectorAll('.divided div')[1];
                 right.classList.add('h-[17em]')
         });
@@ -119,7 +120,7 @@ class CenterBlock extends Controller {
         });`;
         let output = `<b>output:</b> <span class="ml-[1em] px-3 py-1 border border-gray-200">Saludos</span>`;
 
-        exampleBlockContent(this.lorem,code,output,this.center).then(con => {
+        exampleBlockContent(this.lorem,code,output,this.centerContainer).then(con => {
             let right = con.querySelectorAll('.divided div')[1];
                 right.classList.add('h-[10em]')
         });
@@ -142,7 +143,7 @@ class CenterBlock extends Controller {
             </p>
         </div>`;
 
-        exampleBlockContent(this.lorem,code,output,this.center).then(con => {
+        exampleBlockContent(this.lorem,code,output,this.centerContainer).then(con => {
             let right = con.querySelectorAll('.divided div')[1];
                 right.classList.add('h-[13em]')
         });
@@ -165,7 +166,7 @@ class CenterBlock extends Controller {
             </p>
         </div>`;
 
-        exampleBlockContent(this.lorem,code,output,this.center).then(con => {
+        exampleBlockContent(this.lorem,code,output,this.centerContainer).then(con => {
             let right = con.querySelectorAll('.divided div')[1];
                 right.classList.add('h-[13em]')
         });
@@ -239,7 +240,7 @@ class CenterBlock extends Controller {
             <table>
         </div>`;
 
-        exampleBlockContent(this.lorem,code,output,this.center).then(con => {
+        exampleBlockContent(this.lorem,code,output,this.centerContainer).then(con => {
             let divided = con.querySelectorAll('.divided div');
             
             let left = divided[0];
@@ -303,7 +304,7 @@ class CenterBlock extends Controller {
                 </select>
             </div>
         </div>`;
-        exampleBlockContent(this.lorem,code,output,this.center).then(con => {
+        exampleBlockContent(this.lorem,code,output,this.centerContainer).then(con => {
             let divided = con.querySelectorAll('.divided div');
 
             let right = divided[1];
@@ -344,7 +345,7 @@ class CenterBlock extends Controller {
             </div>
         </div>`;
 
-        exampleBlockContent(this.lorem,code,output,this.center).then(con => {
+        exampleBlockContent(this.lorem,code,output,this.centerContainer).then(con => {
             let divided = con.querySelectorAll('.divided div');
 
             let right = divided[1];
