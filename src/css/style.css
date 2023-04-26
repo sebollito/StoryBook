@@ -16,3 +16,14 @@ html,#center {
     opacity: 1;
     transform: scale(1);
 }
+#copy-toast {
+    visibility: hidden;
+    transition: all .2s ease-in-out;
+    opacity: 0;
+    top: -5em;
+}
+#copy-toast.active {
+    visibility: visible;
+    opacity: 1;
+    top: 1em;
+}

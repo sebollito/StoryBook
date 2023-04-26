@@ -1,6 +1,13 @@
-import Controller from '../Controller'
-import { XAppButton } from 'ait-bpd-common';
-import { buildUiList,textDarkBlock,shadeTextBlock, exampleBlockContent, implementScrollUp } from './ElementCollections';
+import Controller from '../Controller';
+import { TextElement,ButtonElement } from 'ait-dav-common';
+import {
+     buildUiList
+    ,textDarkBlock
+    ,shadeTextBlock
+    ,exampleBlockContent
+    ,implementScrollUp
+    ,activeSearchInput
+} from './ElementCollections';
 
 
 class CenterBlock extends Controller {
@@ -16,31 +23,32 @@ class CenterBlock extends Controller {
     constructor() {
         super();
         implementScrollUp(this.center);
+        activeSearchInput(this.left);
     }
 
     initPage() {
         console.log("Welcome to Siebel StoryBoard!!!");
         //this.shadeText("Indice",`<i class="fa fa-list"></i>`);
         this.BList();
-        //this.textBlock();
+        //this.textBlock("Códigos y ejemplos");
         this.shadeText("Texto");
-        this.exmapleContentText();
+        this.exmapleContentText("texto");
         this.shadeText("Button");
-        this.exmapleContentButton();
+        this.exmapleContentButton("button");
         this.shadeText("X-Button");
-        this.exmapleContentXButton();
+        this.exmapleContentXButton("x-button");
         this.shadeText("Div");
-        this.exmapleContentDiv();
+        this.exmapleContentDiv("div");
         this.shadeText("VStack");
-        this.exmapleContentVStack();
+        this.exmapleContentVStack("vstack");
         this.shadeText("HStack");
-        this.exmapleContentHStack();
+        this.exmapleContentHStack("hstack");
         this.shadeText("Table");
-        this.exmapleContentTable();
+        this.exmapleContentTable("table");
         this.shadeText("Select");
-        this.exmapleContentSelect();
+        this.exmapleContentSelect("select");
         this.shadeText("input");
-        this.exmapleContentInput();
+        this.exmapleContentInput("input");
     }
 
     BList() {
@@ -60,8 +68,7 @@ class CenterBlock extends Controller {
         buildUiList(items,this.left);
     }
 
-    textBlock() {
-        let str = "Códigos y ejemplos";
+    textBlock(str:string) {
         textDarkBlock(str,this.centerContainer);
     }
 
@@ -69,71 +76,76 @@ class CenterBlock extends Controller {
         shadeTextBlock(str,this.centerContainer,icon);
     }
 
-    exmapleContentText() {
+    exmapleContentText(id:string) {
         let code = `
-            <i class="text-blue-500">new</i> <b class="text-teal-500">TextElement</b>(<i class="text-red-300">"Hola a todos"</i>,{ <br>
-                <i class="text-cyan-300 ml-[1em]">class</i>: [<i class="text-red-300">"color-texto"</i>] <br>
-            });
+new TextElement("Hola a todos",{ 
+    class: ["color-texto"] 
+});
         `;
-        let output = `<b>output:</b> <span class="ml-[1em] text-gray-500">Hola a todos</span>`;
+        //let output = `<b>output:</b> <span class="ml-[1em] text-gray-500">Hola a todos</span>`;
+        let textElm = new TextElement("Hola a todos", { class: ["color-texto"] });
 
-        exampleBlockContent(this.lorem,code,output,this.centerContainer);
-    }
+        exampleBlockContent(this.lorem,code,null,this.centerContainer,true,id).then(con => {
+            let output = con.querySelector('.output');
 
-    exmapleContentButton() {
-        let code = `
-            <i class="text-blue-500">new</i> <b class="text-teal-500">ButtonElement</b>(<i class="text-red-300">"Click aquí"</i>,{ <br>
-                <div class="ml-[1em]">
-                    <i class="text-yellow-300">target:</i> () => { <br>
-                        <i class="text-yellow-300 ml-[1em]">alert</i>(<i class="text-red-300">"hola cómo estas"</i>); <br>
-                    }, <br>
-                    <i class="text-cyan-300">type</i>: <i class="text-teal-300">ButtonElementType</i>.<i class="text-cyan-300">Primary</i>, <br>
-                    <i class="text-cyan-300">class</i>: [<i class="text-red-300">"custom-css"</i>] <br>
-                </div>
-            });
-        `;
-        let output = `<b>output:</b> <button onclick="alert('hola cómo estas')" class="ml-[1em] transition px-3 py-[.35em] bg-red-500 hover:bg-red-600 text-white rounded-sm shadow">click aquí</button>`;
-
-        exampleBlockContent(this.lorem,code,output,this.centerContainer).then(con => {
-            let right = con.querySelectorAll('.divided div')[1];
-                right.classList.add('h-[14em]');
+            output.appendChild(textElm);
         });
     }
 
-    exmapleContentXButton() {
+    exmapleContentButton(id:string) {
+        let code = `
+new ButtonElement("Click aquí",{
+    target: () => {
+        alert("hola cómo estas");
+    },
+    type: ButtonElementType.Primary,
+    class: ["custom-css"]
+});
+        `;
+        let output = `<b>output:</b> <button onclick="alert('hola cómo estas')" class="ml-[1em] transition px-3 py-[.35em] bg-red-500 hover:bg-red-600 text-white rounded-sm shadow">click aquí</button>`;
+
+        exampleBlockContent(this.lorem,code,output,this.centerContainer,true,id).then(con => {
+            let right = con.querySelectorAll('.divided div')[1];
+                right.classList.add('h-[14em]','w-[70%]');
+        });
+    }
+
+    exmapleContentXButton(id:string) {
         let code = `<x-app-button button-type="primary" button-text="Verificar" x-id="auth-verify-relation"></x-app-button>\n\n let btn = document.querySelector("x-app-button");\n\nbtn.onclick = () => alert("Hola a todos");`;
         let output = `<b>output:</b> <button onclick="alert('Hola a todos')" class="ml-[1em] bg-blue-700 hover:bg-blue-800 text-white rounded-sm px-3 py-1" id="auth-verify-relation">Verificar</button>`;
 
         let html = false
-        exampleBlockContent(this.lorem,code,output,this.centerContainer,html).then(con => {
+        exampleBlockContent(this.lorem,code,output,this.centerContainer,html,id).then(con => {
             let right = con.querySelectorAll('.divided div')[1];
-                right.classList.add('h-[17em]')
+                right.classList.add('h-[17em]','w-[65%]')
         });
     }
 
-    exmapleContentDiv() {
-        let code = `<i class="text-blue-500">new</i> <b class="text-teal-300">DivElement</b>(<br>
-            <i class="text-blue-500 ml-4">new</i> <span class="text-teal-300">TextElement</span>(<i class="text-red-300">"Saludos"</i>),{<br>
-            <div class="ml-[1em]">
-                <i class="text-cyan-300">class</i>: [<i class="text-red-300">"custom-css"</i>] <br>
-            </div>
-        });`;
+    exmapleContentDiv(id:string) {
+        let code = `
+new DivElement(
+    new TextElement("Saludos"),{
+        class: ["custom-css"]
+});
+        `;
         let output = `<b>output:</b> <span class="ml-[1em] px-3 py-1 border border-gray-200">Saludos</span>`;
 
-        exampleBlockContent(this.lorem,code,output,this.centerContainer).then(con => {
+        exampleBlockContent(this.lorem,code,output,this.centerContainer,true,id).then(con => {
             let right = con.querySelectorAll('.divided div')[1];
                 right.classList.add('h-[10em]')
         });
     }
 
-    exmapleContentVStack() {
-        let code = `<span class="text-yellow-400">VStack</span>([<br>
-            <i class="text-blue-500 ml-[1em]">new</i> <i class="text-teal-300">TextElement</i>(<i class="text-red-300">"Uno"</i>), <br>
-            <i class="text-blue-500 ml-[1em]">new</i> <i class="text-teal-300">TextElement</i>(<i class="text-red-300">"Dos"</i>), <br>
-            <i class="text-blue-500 ml-[1em]">new</i> <i class="text-teal-300">TextElement</i>(<i class="text-red-300">"Tres"</i>), <br>
-        ],<br>
-            <i class="text-cyan-300 ml-[1em]">class</i>: [<i class="text-red-300">"custom-css"</i>] <br>
-        );`;
+    exmapleContentVStack(id:string) {
+        let code = `
+VStack([
+    new TextElement("Uno"), 
+    new TextElement("Dos"), 
+    new TextElement("Tres"), 
+],
+    class: ["custom-css"]
+);
+        `;
         let output = `<div class="flex items-start">
             <b>output:</b> 
             <p class="ml-[1em] px-3 py-1 border border-gray-200 w-fit flex flex-col">
@@ -143,20 +155,22 @@ class CenterBlock extends Controller {
             </p>
         </div>`;
 
-        exampleBlockContent(this.lorem,code,output,this.centerContainer).then(con => {
+        exampleBlockContent(this.lorem,code,output,this.centerContainer,true,id).then(con => {
             let right = con.querySelectorAll('.divided div')[1];
                 right.classList.add('h-[13em]')
         });
     }
 
-    exmapleContentHStack() {
-        let code = `<span class="text-yellow-400">HStack</span>([<br>
-            <i class="text-blue-500 ml-[1em]">new</i> <i class="text-teal-300">TextElement</i>(<i class="text-red-300">"Uno"</i>), <br>
-            <i class="text-blue-500 ml-[1em]">new</i> <i class="text-teal-300">TextElement</i>(<i class="text-red-300">"Dos"</i>), <br>
-            <i class="text-blue-500 ml-[1em]">new</i> <i class="text-teal-300">TextElement</i>(<i class="text-red-300">"Tres"</i>), <br>
-        ],<br>
-            <i class="text-cyan-300 ml-[1em]">class</i>: [<i class="text-red-300">"custom-css"</i>] <br>
-        );`;
+    exmapleContentHStack(id:string) {
+        let code = `
+HStack([
+    new TextElement("Uno"),
+    new TextElement("Dos"),
+    new TextElement("Tres"),
+],
+    class: ["custom-css"]
+);
+        `;
         let output = `<div class="flex items-start">
             <b>output:</b> 
             <p class="ml-[1em] px-3 py-1 border border-gray-200 w-fit">
@@ -166,55 +180,35 @@ class CenterBlock extends Controller {
             </p>
         </div>`;
 
-        exampleBlockContent(this.lorem,code,output,this.centerContainer).then(con => {
+        exampleBlockContent(this.lorem,code,output,this.centerContainer,true,id).then(con => {
             let right = con.querySelectorAll('.divided div')[1];
                 right.classList.add('h-[13em]')
         });
     }
 
-    exmapleContentTable() {
-        let code = `<i class="${this.stylen}">var</i> <i class="${this.stylei}">table</i> = <span class="${this.stylef}">Table</span><{ <br>
-            <div class="ml-[1em]">
-            <i class="${this.stylei}">id</i>: <i class="${this.stylev}">string</i>, <br>
-                <i class="${this.stylei}">name</i>: <i class="${this.stylev}">string</i> <br>
-            </div>
-        }>([<br>
-            <div class="ml-[1em]">
-                {
-                    <div class="ml-[1em]">
-                        <i class="${this.stylei}">header</i>: { <i class="${this.stylei}">title</i>: <i class="${this.stylel}">"ID"</i> }, <br>
-                        <i class="${this.stylei}">data</i>: (<i class="${this.stylei}">_row</i>) => { <br>
-                            <div class="ml-[1em] flex flex-row">
-                                <i class="${this.styler}">return</i> <i class="${this.stylen} mx-[1em]">new</i> <i class="${this.stylev}">TextElement</i>(<i class="${this.stylei}">_row.id</i>);
-                            </div>
-                        }
-                    </div>
-                },
-            </div>
-            <div class="ml-[1em]">
-                {
-                    <div class="ml-[1em]">
-                        <i class="${this.stylei}">header</i>: { <i class="${this.stylei}">title</i>: <i class="${this.stylel}">"Nombre"</i> }, <br>
-                        <i class="${this.stylei}">data</i>: (<i class="${this.stylei}">_row</i>) => { <br>
-                            <div class="ml-[1em] flex flex-row">
-                                <i class="${this.styler}">return</i> <i class="${this.stylen} mx-[1em]">new</i> <i class="${this.stylev}">TextElement</i>(<i class="${this.stylei}">_row.name</i>);
-                            </div>
-                        }
-                    </div>
-                },
-            </div>
-        ]);
-        
-        <br>
-        <br>
+    exmapleContentTable(id:string) {
+        let code = `
+var tbl = Table<{
+    id: string,
+    name: string,
+}>([
+    {
+        header: { title: "ID" },
+        data: (_row) => {
+            return new TextElement(_row.id);
+        }
+    },
+    {
+        header: { title: "Nombre" },
+        data: (_row) => {
+            return new TextElement(_row.name);
+        }
+    },
+]);
 
-        <i class="text-gray-400">// asigno la data a la tabla</i> <br>
-        <i class="${this.stylei}">table.data</i> = <i class="${this.stylei}">sourceData</i>;
-
-        <br>
-        <br>
-        <br>
-        `;
+// asigno valores a la tabla 
+tbl.data = sourceData;
+`;
         let output = `<div class="flex items-start">
             <b>output:</b> <table class="ml-[1em] border w-fit">
                 <thead class="text-gray-700 bg-gray-100 border-b">
@@ -240,7 +234,7 @@ class CenterBlock extends Controller {
             <table>
         </div>`;
 
-        exampleBlockContent(this.lorem,code,output,this.centerContainer).then(con => {
+        exampleBlockContent(this.lorem,code,output,this.centerContainer,true,id).then(con => {
             let divided = con.querySelectorAll('.divided div');
             
             let left = divided[0];
@@ -251,47 +245,30 @@ class CenterBlock extends Controller {
         });
     }
 
-    exmapleContentSelect() {
-        let code = `<i class="${this.stylen}">let</i> <i class="${this.stylei}">select</i> = <i class="${this.stylen}">new</i> <i class="${this.stylev}">SelectElement</i>({
-            <div class="ml-[1em]">
-                <i class="${this.stylei}">tag</i>: <i class="${this.stylel}">'relationType'</i>, <br>
-                <i class="${this.stylei}">title</i>: <i class="${this.stylel}">'Relación'</i>, <br>
-                <i class="${this.stylei}">model</i>: <i class="${this.stylel}">'relation'</i>, <br>
-                <i class="${this.stylei}">buttonIcon</i>: <i class="${this.stylen}">new</i> <i class="${this.stylev}">GenericIcon</i>(<br>
-                    <div class="ml-[1em]">
-                        <i class="${this.stylei}">IconDAV</i>,{ <br> 
-                                <div class="ml-[1em]">
-                                    <i class="${this.stylei}">class</i>: [ <br> 
-                                    <i class="${this.stylel}">'icon-rotate'</i>, <br> 
-                                    <i class="${this.stylel}">'reflect-horizontal'</i> <br>
-                                </div>
-                            ]})
-                    </div>
-            </div>
-        })
+    exmapleContentSelect(id:string) {
+        let code = `
+let slct = new SelectElement({
+    tag: "relationType",
+    title: "Relación",
+    model: "relation",
+    buttonIcon: new GenericIcon(
+        IconDAV,
+        { 
+            class: [ "icon-rotate","reflect-horizontal"]
+        }
+    )
+});
 
-        <br>
-        <br>
-        
-        <i class="${this.stylei}">select.data</i> = [{ <br>
-            <div class="ml-[1em]">
-                <i class="${this.stylei}">name</i>: <i class="${this.stylel}">'Valor 1'</i>, <br>
-                <i class="${this.stylei}">value</i>: 1 <br>
-            </div>
-        }, { <br>
-            <div class="ml-[1em]">
-                <i class="${this.stylei}">name</i>: <i class="${this.stylel}">'Valor 2'</i>, <br>
-                <i class="${this.stylei}">value</i>: 2 <br>
-            </div>
-        }, { <br>
-            <div class="ml-[1em]">
-                <i class="${this.stylei}">name</i>: <i class="${this.stylel}">'Valor 3'</i>, <br>
-                <i class="${this.stylei}">value</i>: 3 <br>
-            </div>
-        }];
-
-        <br>
-        <br>
+slct.data = [{ 
+    name: "Valor 1",
+    value: 1, 
+}, { 
+    name: "Valor 2",
+    value: 2,
+}, {
+    name: "Valor 3",
+    value: 3,
+}];
         `;
         let output = `<div class="flex justify-start items-start">
             <b>output:</b> <div class="ml-[1em] flex flex-col">
@@ -304,34 +281,32 @@ class CenterBlock extends Controller {
                 </select>
             </div>
         </div>`;
-        exampleBlockContent(this.lorem,code,output,this.centerContainer).then(con => {
+        exampleBlockContent(this.lorem,code,output,this.centerContainer,true,id).then(con => {
             let divided = con.querySelectorAll('.divided div');
 
+            let left = divided[0];
+                left.classList.add('w-[30%]')
+
             let right = divided[1];
-                right.classList.add('h-[18em]','w-[60%]','overflow-x-scroll')
+                right.classList.add('h-[18em]','w-[70%]','overflow-x-scroll')
         })
     }
 
-    exmapleContentInput() {
-        let code = `<i class="${this.stylen}">let</i> <i class="${this.stylei}">inputNumber</i> = <i class="${this.stylen}">new</i> <i class="${this.stylev}">InputElement</i>({
-            <div class="ml-[1em]">
-                <i class="${this.stylei}">tag</i>: <i class="${this.stylel}">'idNum'</i>, <br>
-                <i class="${this.stylei}">title</i>: <i class="${this.stylel}">'Número de Identificación'</i>, <br>
-                <i class="${this.stylei}">model</i>: <i class="${this.stylel}">'idNum'</i>, <br>
-                <i class="${this.stylei}">typeNumber</i>: <i class="${this.stylen}">true</i>, <br>
-                <i class="${this.stylei}">maxLength</i>: 10 <br>
-            </div>
-        });
-        <br>
-        <br>
-        <i class="${this.stylen}">let</i> <i class="${this.stylei}">inputText</i> = <i class="${this.stylen}">new</i> <i class="${this.stylev}">InputElement</i>({
-            <div class="ml-[1em]">
-                <i class="${this.stylei}">tag</i>: <i class="${this.stylel}">'idtext'</i>, <br>
-                <i class="${this.stylei}">title</i>: <i class="${this.stylel}">'Nómbre'</i>, <br>
-                <i class="${this.stylei}">model</i>: <i class="${this.stylel}">'name'</i>, <br>
-            </div>
-        });
-        <br>
+    exmapleContentInput(id:string) {
+        let code = `
+let inpNumber = new InputElement({
+    tag: "idNum",
+    title: "Número de Identificación",
+    model: "idNum",
+    typeNumber: true,
+    maxLength: 10
+});
+
+let inpText = new InputElement({
+    tag: "idtext",
+    title: "Nómbre",
+    model: "name",
+});
         `;
         let output = `<div class="flex flex-row">
             <b>output:</b> 
@@ -345,11 +320,14 @@ class CenterBlock extends Controller {
             </div>
         </div>`;
 
-        exampleBlockContent(this.lorem,code,output,this.centerContainer).then(con => {
+        exampleBlockContent(this.lorem,code,output,this.centerContainer,true,id).then(con => {
             let divided = con.querySelectorAll('.divided div');
 
+            let left = divided[0];
+                left.classList.add('w-[30%]')
+
             let right = divided[1];
-                right.classList.add('h-[18em]','w-[60%]')
+                right.classList.add('h-[18em]','w-[70%]','overflow-x-scroll')
         });
     }
 }

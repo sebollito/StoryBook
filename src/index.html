@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Siebel HistoryBook</title>
+    <title>HistoryBook</title>
 </head>
 <body class="bg-teal-500 text-white p-0 m-0">
     <template>
@@ -20,12 +20,14 @@
                         </button>
                     </div>
                 </div>
+                <!--BUSCADOR-->
                 <div class="p-2 mt-[1em]">
                     <div class="rounded-full bg-teal-700 px-4 py-2 text-xs flex items-center">
-                        <input type="text" placeholder="Buscar..." class="bg-transparent outline-none w-full" />
+                        <input id="search" type="text" placeholder="Buscar..." class="bg-transparent outline-none w-full" />
                         <i class="fa fa-search float-right text-teal-500"></i>
                     </div>
                 </div>
+                <!--FIN DEL BUSCADOR-->
                 <br>
                 <div class="flex space-between items-center text-xs px-4 pb-[1em] border-b border-teal-400">
                     <div class="w-[10%]">
@@ -50,7 +52,7 @@
                 </div>
                 <br>
                 <!--ROOT-->
-                <div id="center-container" class="px-[4em]">
+                <div id="center-container" class="px-[15%]">
                     <h1 class="text-5xl font-bold drop-shadow-lg">
                         <i class="fa fa-th"></i> Siebel Storyboard
                     </h1>
@@ -61,11 +63,16 @@
                     <br>
                     <br>
                 </div>
-                <button id="btn-browser-up" class="transition rounded-full h-[2.5em] w-[2.5em] p-2 shadow-lg bg-orange-500 hover:bg-orange-600 text-white fixed z-10 bottom-[1em] right-[1.5em] font-bold text-lg">
+                <button id="btn-browser-up" class="transition rounded-full h-[2.5em] w-[2.5em] p-2 shadow-lg bg-orange-500 hover:bg-orange-600 text-white fixed z-10 bottom-[1em] right-[1.5%] font-bold text-lg">
                     <i class="fa fa-arrow-up"></i>
                 </button>
             </div>
-            <!--<div id="right" class="w-[25%]"></div>-->
+            <!--
+                <div id="right" class="w-[15%]"></div>
+            -->
+        </div>
+        <div id="copy-toast" class="fixed right-[1.5em] p-3 bg-gray-700 text-white shadow-lg rounded border border-purple-500 text-xs">
+            copiado al portapapeles <i class="fa fa-check"></i>
         </div>
     </template>
 </body>
