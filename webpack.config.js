@@ -49,8 +49,8 @@ module.exports = (env,arg) => {
             rules: rules
         },
         externals: {
-            //"ait-dav-common": path.resolve(__dirname,'node_modules','@types','ait-dav-common')
-            "ait-dav-common": 'siebel/custom/Scripts/AIT-DAV-Common/AIT-DAV-Common',
+            //"ait-bpd-common-core": 'siebel/custom/Scripts/AIT-BPD-Common-core/AIT-BPD-Common-core',
+            "ait-bpd-common-core": path.resolve(__dirname,'node_modules','@types','ait-common-core'),
         },
         resolve: {
             extensions: [".tsx",".ts",".js",".jsx",".json"],

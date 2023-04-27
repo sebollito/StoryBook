@@ -1,5 +1,5 @@
 import Controller from '../Controller';
-import { TextElement,ButtonElement } from 'ait-dav-common';
+import { TextElement } from 'ait-bpd-common-core';
 import {
      buildUiList
     ,textDarkBlock
