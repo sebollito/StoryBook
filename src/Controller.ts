@@ -1,5 +1,3 @@
-
-
 export default class Controller {
 
     document: Document = document;

@@ -1,5 +1,6 @@
 import Controller from '../Controller';
 import { TextElement } from 'ait-bpd-common-core';
+import { XAppsElement } from 'ait-bpd-common';
 import {
      buildUiList
     ,textDarkBlock
@@ -28,9 +29,8 @@ class CenterBlock extends Controller {
 
     initPage() {
         console.log("Welcome to Siebel StoryBoard!!!");
-        //this.shadeText("Indice",`<i class="fa fa-list"></i>`);
+        
         this.BList();
-        //this.textBlock("Códigos y ejemplos");
         this.shadeText("Texto");
         this.exmapleContentText("texto");
         this.shadeText("Button");
@@ -87,8 +87,7 @@ new TextElement("Hola a todos",{
 
         exampleBlockContent(this.lorem,code,null,this.centerContainer,true,id).then(con => {
             let output = con.querySelector('.output');
-
-            output.appendChild(textElm);
+                output.appendChild(textElm);
         });
     }
 
