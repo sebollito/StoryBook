@@ -4,6 +4,9 @@ const HtmlWebpackPlugin = require('html-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin');
 const webpack = require('webpack');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const express = require('express');
+const nodeExternals = require('webpack-node-externals');
+
 
 const ASSET_PATH = process.env.ASSET_PATH || '/';
 
@@ -56,21 +59,33 @@ module.exports = (env,arg) => {
         output: {
             filename: 'StoryBook.js',
             path: path.resolve(__dirname,'dist'),
+            libraryTarget: 'amd',
+            library: 'StoryBook',
+            umdNamedDefine: true,
         },
         devServer: {
             compress: true,
             historyApiFallback: true,
             static: {
-                directory: path.join(__dirname,'public')
+                directory: path.resolve(__dirname,'public')
             },
             port: 8000,
-            open: false
+            open: false,
+            setupMiddlewares: (middlewares,devServer) => {
+                devServer.app.use('/css/', express.static(path.resolve(__dirname,'src/css')));
+                //devServer.app.use('/js/', express.static(path.resolve(__dirname,'public/js')));
+                return middlewares;
+            }
+        },
+        externals: {
+            "ait-bpd-common-core": "AIT-BPD-Common-core",
+            //"ait-common": "AIT-Common",
         },
         resolve: {
-            extensions: [".tsx",".ts",".js",".json"],
+            extensions: [".tsx",".ts",".js",".jsx",".json"],
             alias: {
                 utils: resolve(__dirname, 'src', 'utils'),
-                model: resolve(__dirname, 'src', 'model')
+                model: resolve(__dirname, 'src', 'model'),
             },
             mainFiles: ['index']
         },
@@ -78,7 +93,7 @@ module.exports = (env,arg) => {
             rules: rules
         },
         plugins: [
-            new CleanWebpackPlugin(),
+            //new CleanWebpackPlugin(),
             new HtmlWebpackPlugin({ template: path.join(__dirname,'src','index.html') }),
             new webpack.DefinePlugin({
                 'process.env.ENVIRONMENT': JSON.stringify(process.env.ENVIRONMENT)

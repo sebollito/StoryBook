@@ -1,6 +1,5 @@
 import Controller from '../Controller';
 import { TextElement } from 'ait-bpd-common-core';
-import { XAppsElement } from 'ait-bpd-common';
 import {
      buildUiList
     ,textDarkBlock
@@ -9,6 +8,8 @@ import {
     ,implementScrollUp
     ,activeSearchInput
 } from './ElementCollections';
+
+
 
 
 class CenterBlock extends Controller {
@@ -83,11 +84,12 @@ new TextElement("Hola a todos",{
 });
         `;
         //let output = `<b>output:</b> <span class="ml-[1em] text-gray-500">Hola a todos</span>`;
-        let textElm = new TextElement("Hola a todos", { class: ["color-texto"] });
+        //let textElm = new TextElement("Hola a todos", { class: ["color-texto"] });
 
+        
         exampleBlockContent(this.lorem,code,null,this.centerContainer,true,id).then(con => {
             let output = con.querySelector('.output');
-                output.appendChild(textElm);
+                //output.appendChild(textElm);
         });
     }
 

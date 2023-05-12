@@ -1,10 +1,10 @@
 const merge = require('webpack-merge');
 const common = require('./webpack.config.js');
-const TerserJSPlugin = require('terser-webpack-plugin');
-const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
+const { resolve } = require('path')
+const CopyPlugin = require('copy-webpack-plugin')
 const { BaseHrefWebpackPlugin } = require('base-href-webpack-plugin');
 const path = require('path');
-const { resolve } = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
@@ -42,7 +42,15 @@ const rules = [
 ];
 
 module.exports = merge(common, {
-    mode: 'production',
+    mode: 'development',
+    plugins: [
+        new Dotenv({
+            path: './envdebug.env'
+        }),
+        //new CopyPlugin([{
+        //    from: 'index.html'
+        //}]),
+    ],
     resolve: {
         extensions: [".js",".tsx",".ts",".json","..."],
         alias: {
@@ -51,37 +59,11 @@ module.exports = merge(common, {
         },
         mainFiles: ['index']
     },
-    output: {
-        filename: 'StoryBook.js',
-        path: path.resolve(__dirname,'dist'),
-        libraryTarget: 'amd',
-        library: ['StoryBook','ait-bpd-common-core'],
-        umdNamedDefine: true
-    },
     module: {
         rules: rules
     },
-    experiments: {
-        topLevelAwait: true
-    },
-    externalsType: 'window',
-    externals: {
-        "ait-bpd-common-core": "AIT-BPD-Common-core",
-        
-    },
-    plugins: [
-        new CleanWebpackPlugin(),
-        new HtmlWebpackPlugin({ template: path.join(__dirname,'src','index.html') }),
-    ],
-    optimization: {
-        minimize: true,
-        minimizer: [new TerserJSPlugin({
-            extractComments: false,
-            terserOptions: {
-	            keep_classnames: undefined,
-                keep_fnames: false,
-                mangle: true,
-	        }
-        })],
+    devServer: {
+        contentBase: resolve(__dirname, 'build'),
+        port: 9000
     }
 });

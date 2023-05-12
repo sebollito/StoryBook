@@ -5,6 +5,7 @@ module.exports = {
          "./dist/*.html"
         ,"./src/**/*.{html,js,ts}"
         ,"./components/**/*.{html,js,ts}"
+        ,"./public/**/*.{js,css}"
     ],
     theme: {
         extend: {}

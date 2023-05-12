@@ -8,6 +8,8 @@
     "build": "webpack --mode=production",
     "tailwind": "npx tailwindcss -i ./src/css/style.css --watch",
     "gulp-prod": "gulp prod",
+    "gulp-dev": "gulp dev",
+    "gulp-watch": "gulp watch",
     "test": "nodemon server.js"
   },
   "keywords": [],
@@ -21,6 +23,7 @@
     "@tailwindcss/typography": "^0.5.9",
     "@types/ait-bpd-common": "git+https://rafaelflores01@bitbucket.org/activeitspa/ait-bpd-common.git",
     "@types/ait-bpd-common-core": "git+ssh://git@bitbucket.org:activeitspa/ait-common.git",
+    "@types/ait-dav-common": "git+git@bitbucket.org:activeitspa/ait-dav-common.git",
     "@types/jquery": "^3.3.32",
     "@types/moment": "^2.13.0",
     "@types/uuid": "^8.3.0",
@@ -60,10 +63,12 @@
     "webpack-cli": "^5.0.1",
     "webpack-dev-server": "^4.13.2",
     "webpack-merge": "^4.2.2",
+    "webpack-node-externals": "^3.0.0",
     "webpack-obfuscator": "^2.6.0",
     "webpack-stream": "^5.2.1"
   },
   "dependencies": {
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "x-tag": "^2.0.3-beta"
   }
 }
