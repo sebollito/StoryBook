@@ -1,6 +1,6 @@
 export default class Controller {
 
-    document: Document = document;
+    document: Document;
     root: HTMLElement;
     left: HTMLElement;
     center: HTMLElement;
@@ -9,7 +9,8 @@ export default class Controller {
 
     constructor() {
         this.renderTemplate();
-        
+
+        this.document = document;
         this.root = this.document.getElementById('root');
         this.left = this.document.getElementById('left');
         this.center = this.document.getElementById('center');
@@ -17,11 +18,23 @@ export default class Controller {
         this.right = this.document.getElementById('right');
     }
 
-    renderTemplate() {
-        let temp = this.document.getElementsByTagName('template')[0];
+    renderTemplate(container?:HTMLElement,cb?:any) {
+        let temp = document.getElementsByTagName('template')[0];
         let clon = temp.content.cloneNode(true);
 
-        this.document.body.appendChild(clon);
+        if(container != null)
+        {
+            container.appendChild(clon);
+        }
+        else
+        {
+            document.body.appendChild(clon);
+        }
+
+
+        cb && cb(container);
+        
+        return container;
     }
 
 }

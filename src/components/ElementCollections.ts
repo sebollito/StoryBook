@@ -34,7 +34,7 @@ const activeSearchInput = (parent:HTMLElement) => {
 const implementScrollUp = async function(parent?:HTMLElement) {
     let btnUp = document.getElementById('btn-browser-up');
 
-    parent.addEventListener('scroll',(w) => {
+    parent.addEventListener('scroll',(w:any) => {
         if(parent.scrollTop > 750)
         {
             btnUp.classList.add('active');
@@ -54,7 +54,7 @@ const implementScrollUp = async function(parent?:HTMLElement) {
     }
 }
 
-const buildUiList = async function(items:any,parent?:HTMLElement) {
+const buildUiList = function(items:any,parent?:HTMLElement) {
 
     let container = document.createElement('div');
     let list = document.createElement('ul');
@@ -76,7 +76,7 @@ const buildUiList = async function(items:any,parent?:HTMLElement) {
         a.appendChild(span);
         item.appendChild(a);
         list.appendChild(item);
-        
+
         if((index + 1) == items.length)
         {
             container.appendChild(list);
@@ -89,7 +89,7 @@ const buildUiList = async function(items:any,parent?:HTMLElement) {
 
     });
 
-    return await list;
+    return container;
 }
 
 const textDarkBlock = async function(str:string,parent: HTMLElement) {
@@ -103,7 +103,7 @@ const textDarkBlock = async function(str:string,parent: HTMLElement) {
     return await div;
 }
 
-const shadeTextBlock = async function(str:string,parent:HTMLElement,icon?:string) {
+const shadeTextBlock = function(str:string,parent:HTMLElement,icon?:string) {
     let div = document.createElement('div');
         div.className = "font-bold text-lg mb-2 bg-teal-700 rounded-lg px-[1em] py-[.4em] w-full flex space-between items-center";
         div.id = str.toLowerCase()
@@ -150,10 +150,10 @@ const shadeTextBlock = async function(str:string,parent:HTMLElement,icon?:string
         div.appendChild(right);
         parent && parent.appendChild(div);
 
-    return await div
+    return div
 }
 
-const exampleBlockContent = async function(str:string,code:string,output?:string,parent?:HTMLElement,html:boolean=true,id?:string) {
+const exampleBlockContent = function(str:string,code:string,output?:HTMLElement,parent?:HTMLElement,html:boolean=true,id?:string) {
 
     let container = document.createElement('div');
         container.className = "p-4 rounded-lg shadow-lg bg-white text-gray-500";
@@ -177,10 +177,10 @@ const exampleBlockContent = async function(str:string,code:string,output?:string
         hr.style.marginBottom = "1em";
     let outputContent = document.createElement('div')
         outputContent.className = "output";
-        outputContent.style.paddingTop = "1em";
+        //outputContent.style.paddingTop = "1em";
         outputContent.style.paddingBottom = "1em";
-        outputContent.innerHTML = output ? output : '';
-
+        
+    output != null && outputContent.appendChild(output);
     right.appendChild(codeContent);
     content.appendChild(left);
     content.appendChild(right);
@@ -190,7 +190,7 @@ const exampleBlockContent = async function(str:string,code:string,output?:string
 
     parent && parent.appendChild(container);
 
-    return await container;
+    return container;
 }
 
 export {

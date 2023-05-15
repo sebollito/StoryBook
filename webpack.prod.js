@@ -55,7 +55,7 @@ module.exports = merge(common, {
         filename: 'StoryBook.js',
         path: path.resolve(__dirname,'dist'),
         libraryTarget: 'amd',
-        library: ['StoryBook','ait-bpd-common-core'],
+        library: 'StoryBook',
         umdNamedDefine: true
     },
     module: {
@@ -67,7 +67,6 @@ module.exports = merge(common, {
     externalsType: 'window',
     externals: {
         "ait-bpd-common-core": "AIT-BPD-Common-core",
-        
     },
     plugins: [
         new CleanWebpackPlugin(),

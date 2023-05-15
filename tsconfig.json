@@ -9,7 +9,13 @@
         "moduleResolution": "node",
         "resolveJsonModule": true,
         "allowSyntheticDefaultImports": true,
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "allowJs": true,
+        "downlevelIteration": true,
+        "importHelpers": true
     },
     "include": [
         "src/index.ts",

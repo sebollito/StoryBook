@@ -1,5 +1,4 @@
 import Controller from '../Controller';
-import { TextElement } from 'ait-bpd-common-core';
 import {
      buildUiList
     ,textDarkBlock
@@ -8,6 +7,7 @@ import {
     ,implementScrollUp
     ,activeSearchInput
 } from './ElementCollections';
+import { TextElement } from 'ait-bpd-common-core';
 
 
 
@@ -24,13 +24,14 @@ class CenterBlock extends Controller {
 
     constructor() {
         super();
-        implementScrollUp(this.center);
-        activeSearchInput(this.left);
+
+        this.center && implementScrollUp(this.center);
+        this.left && activeSearchInput(this.left);
     }
 
     initPage() {
         console.log("Welcome to Siebel StoryBoard!!!");
-        
+            
         this.BList();
         this.shadeText("Texto");
         this.exmapleContentText("texto");
@@ -66,7 +67,7 @@ class CenterBlock extends Controller {
             { name: 'Checkbox', href: 'checkbox',icon: 'fa fa-caret-right' },
         ]
 
-        buildUiList(items,this.left);
+        return buildUiList(items,this.left);
     }
 
     textBlock(str:string) {
@@ -84,13 +85,9 @@ new TextElement("Hola a todos",{
 });
         `;
         //let output = `<b>output:</b> <span class="ml-[1em] text-gray-500">Hola a todos</span>`;
-        //let textElm = new TextElement("Hola a todos", { class: ["color-texto"] });
-
+        let textElm = new TextElement("Hola a todos", { class: ["color-texto"] });
         
-        exampleBlockContent(this.lorem,code,null,this.centerContainer,true,id).then(con => {
-            let output = con.querySelector('.output');
-                //output.appendChild(textElm);
-        });
+        exampleBlockContent(this.lorem,code,textElm,this.centerContainer,true,id);
     }
 
     exmapleContentButton(id:string) {
@@ -105,10 +102,7 @@ new ButtonElement("Click aquí",{
         `;
         let output = `<b>output:</b> <button onclick="alert('hola cómo estas')" class="ml-[1em] transition px-3 py-[.35em] bg-red-500 hover:bg-red-600 text-white rounded-sm shadow">click aquí</button>`;
 
-        exampleBlockContent(this.lorem,code,output,this.centerContainer,true,id).then(con => {
-            let right = con.querySelectorAll('.divided div')[1];
-                right.classList.add('h-[14em]','w-[70%]');
-        });
+        exampleBlockContent(this.lorem,code,null,this.centerContainer,true,id);
     }
 
     exmapleContentXButton(id:string) {
@@ -116,10 +110,7 @@ new ButtonElement("Click aquí",{
         let output = `<b>output:</b> <button onclick="alert('Hola a todos')" class="ml-[1em] bg-blue-700 hover:bg-blue-800 text-white rounded-sm px-3 py-1" id="auth-verify-relation">Verificar</button>`;
 
         let html = false
-        exampleBlockContent(this.lorem,code,output,this.centerContainer,html,id).then(con => {
-            let right = con.querySelectorAll('.divided div')[1];
-                right.classList.add('h-[17em]','w-[65%]')
-        });
+        exampleBlockContent(this.lorem,code,null,this.centerContainer,html,id);
     }
 
     exmapleContentDiv(id:string) {
@@ -131,10 +122,7 @@ new DivElement(
         `;
         let output = `<b>output:</b> <span class="ml-[1em] px-3 py-1 border border-gray-200">Saludos</span>`;
 
-        exampleBlockContent(this.lorem,code,output,this.centerContainer,true,id).then(con => {
-            let right = con.querySelectorAll('.divided div')[1];
-                right.classList.add('h-[10em]')
-        });
+        exampleBlockContent(this.lorem,code,null,this.centerContainer,true,id);
     }
 
     exmapleContentVStack(id:string) {
@@ -156,10 +144,7 @@ VStack([
             </p>
         </div>`;
 
-        exampleBlockContent(this.lorem,code,output,this.centerContainer,true,id).then(con => {
-            let right = con.querySelectorAll('.divided div')[1];
-                right.classList.add('h-[13em]')
-        });
+        exampleBlockContent(this.lorem,code,null,this.centerContainer,true,id);
     }
 
     exmapleContentHStack(id:string) {
@@ -181,10 +166,7 @@ HStack([
             </p>
         </div>`;
 
-        exampleBlockContent(this.lorem,code,output,this.centerContainer,true,id).then(con => {
-            let right = con.querySelectorAll('.divided div')[1];
-                right.classList.add('h-[13em]')
-        });
+        exampleBlockContent(this.lorem,code,null,this.centerContainer,true,id);
     }
 
     exmapleContentTable(id:string) {
@@ -235,15 +217,7 @@ tbl.data = sourceData;
             <table>
         </div>`;
 
-        exampleBlockContent(this.lorem,code,output,this.centerContainer,true,id).then(con => {
-            let divided = con.querySelectorAll('.divided div');
-            
-            let left = divided[0];
-                left.classList.add('w-[40%]')
-                
-            let right = divided[1];
-                right.className = 'bg-gray-800 text-white rounded-lg p-3 flex items-center h-[20em] w-[22em] overflow-y-scroll overflow-x-scroll';
-        });
+        exampleBlockContent(this.lorem,code,null,this.centerContainer,true,id);
     }
 
     exmapleContentSelect(id:string) {
@@ -282,15 +256,7 @@ slct.data = [{
                 </select>
             </div>
         </div>`;
-        exampleBlockContent(this.lorem,code,output,this.centerContainer,true,id).then(con => {
-            let divided = con.querySelectorAll('.divided div');
-
-            let left = divided[0];
-                left.classList.add('w-[30%]')
-
-            let right = divided[1];
-                right.classList.add('h-[18em]','w-[70%]','overflow-x-scroll')
-        })
+        exampleBlockContent(this.lorem,code,null,this.centerContainer,true,id);
     }
 
     exmapleContentInput(id:string) {
@@ -321,15 +287,7 @@ let inpText = new InputElement({
             </div>
         </div>`;
 
-        exampleBlockContent(this.lorem,code,output,this.centerContainer,true,id).then(con => {
-            let divided = con.querySelectorAll('.divided div');
-
-            let left = divided[0];
-                left.classList.add('w-[30%]')
-
-            let right = divided[1];
-                right.classList.add('h-[18em]','w-[70%]','overflow-x-scroll')
-        });
+        exampleBlockContent(this.lorem,code,null,this.centerContainer,true,id);
     }
 }
 

@@ -65,10 +65,10 @@
     "webpack-merge": "^4.2.2",
     "webpack-node-externals": "^3.0.0",
     "webpack-obfuscator": "^2.6.0",
-    "webpack-stream": "^5.2.1"
+    "webpack-stream": "^5.2.1",
+    "x-tag": "^2.0.3-beta"
   },
   "dependencies": {
-    "font-awesome": "^4.7.0",
-    "x-tag": "^2.0.3-beta"
+    "font-awesome": "^4.7.0"
   }
 }

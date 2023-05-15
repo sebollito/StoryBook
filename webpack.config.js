@@ -77,9 +77,12 @@ module.exports = (env,arg) => {
                 return middlewares;
             }
         },
+        experiments: {
+            topLevelAwait: true
+        },
         externals: {
+            "x-tag": "x-tag",
             "ait-bpd-common-core": "AIT-BPD-Common-core",
-            //"ait-common": "AIT-Common",
         },
         resolve: {
             extensions: [".tsx",".ts",".js",".jsx",".json"],

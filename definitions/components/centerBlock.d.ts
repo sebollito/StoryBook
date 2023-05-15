@@ -9,7 +9,7 @@ declare class CenterBlock extends Controller {
     stylef: string;
     constructor();
     initPage(): void;
-    BList(): void;
+    BList(): string;
     textBlock(str: string): void;
     shadeText(str: string, icon?: string): void;
     exmapleContentText(id: string): void;
