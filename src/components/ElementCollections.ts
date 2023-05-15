@@ -153,7 +153,7 @@ const shadeTextBlock = function(str:string,parent:HTMLElement,icon?:string) {
     return div
 }
 
-const exampleBlockContent = function(str:string,code:string,output?:HTMLElement,parent?:HTMLElement,html:boolean=true,id?:string) {
+const exampleBlockContent = async function(str:string,code:string,output?:HTMLElement,parent?:HTMLElement,html:boolean=true,id?:string) {
 
     let container = document.createElement('div');
         container.className = "p-4 rounded-lg shadow-lg bg-white text-gray-500";
@@ -176,11 +176,16 @@ const exampleBlockContent = function(str:string,code:string,output?:HTMLElement,
         hr.style.marginTop = "1em";
         hr.style.marginBottom = "1em";
     let outputContent = document.createElement('div')
-        outputContent.className = "output";
-        //outputContent.style.paddingTop = "1em";
-        outputContent.style.paddingBottom = "1em";
+        outputContent.className = "output flex space-between items-start py-2";
+    let oleft = document.createElement('div');
+        oleft.className = 'font-bold';
+        oleft.innerText = 'output:';
+    let oright = document.createElement('div');
+        oright.className = 'ml-[1em]';
         
-    output != null && outputContent.appendChild(output);
+    outputContent.appendChild(oleft);
+    outputContent.appendChild(oright);
+    output != null && oright.appendChild(output);
     right.appendChild(codeContent);
     content.appendChild(left);
     content.appendChild(right);
@@ -190,7 +195,7 @@ const exampleBlockContent = function(str:string,code:string,output?:HTMLElement,
 
     parent && parent.appendChild(container);
 
-    return container;
+    return await container;
 }
 
 export {

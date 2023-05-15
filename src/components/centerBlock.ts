@@ -84,8 +84,8 @@ new TextElement("Hola a todos",{
     class: ["color-texto"] 
 });
         `;
-        //let output = `<b>output:</b> <span class="ml-[1em] text-gray-500">Hola a todos</span>`;
-        let textElm = new TextElement("Hola a todos", { class: ["color-texto"] });
+        
+        let textElm = new TextElement("Hola a todos", { class: ["border","p-2","rounded"] });
         
         exampleBlockContent(this.lorem,code,textElm,this.centerContainer,true,id);
     }
