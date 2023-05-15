@@ -1,6 +1,15 @@
 import Controller from '../Controller';
 declare class CenterBlock extends Controller {
-    lorem: string;
+    descTexto: string;
+    descButton: string;
+    descXButton: string;
+    descDiv: string;
+    descVStack: string;
+    descHStack: string;
+    descTable: string;
+    descSelect: string;
+    descInput: string;
+    descCheckbox: string;
     stylei: string;
     stylev: string;
     stylel: string;
@@ -9,7 +18,7 @@ declare class CenterBlock extends Controller {
     stylef: string;
     constructor();
     initPage(): void;
-    BList(): string;
+    BList(): HTMLDivElement;
     textBlock(str: string): void;
     shadeText(str: string, icon?: string): void;
     exmapleContentText(id: string): void;

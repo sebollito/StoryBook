@@ -1,3 +1,4 @@
+import { XAppButton } from 'ait-bpd-common';
 import Controller from '../Controller';
 import {
      buildUiList
@@ -7,21 +8,30 @@ import {
     ,implementScrollUp
     ,activeSearchInput
 } from './ElementCollections';
-import { TextElement } from 'ait-bpd-common-core';
+import { ButtonElement, CheckBoxElement, HStack, InputElement, SelectElement, Table, TextElement, VStack } from 'ait-bpd-common-core';
 
 
 
 
 class CenterBlock extends Controller {
 
-    lorem = "Lorem ipsum dolor sit amet consectetur adipisicing elit. Adipisci nihil, harum quam exercitationem quidem impedit ea corrupti debitis officia eos maiores aliquam in incidunt minus illum corporis tenetur expedita pariatur."
+    descTexto = "El elemento <b>TextElement</b>, representa un elemento de control para la edición de texto sin formato.<br><br>Este elemento tiene dos parametros: <b>text:</b> tipo <em>string</em>, el cual es requerido, y <b>options:</b> tipo <em>TextElementOptions</em>, el cual es opcional.<br><br>Las opciones disponibles de tipo <em>TextElementOptions</em> son:  <b>alignment</b>, <b>class</b> y <b>node</b>"
+    descButton = "El elemento <b>ButtonElement</b> representa un elemento cliqueable de tipo botón que puede ser utilizado en formularios o en cualquier parte de la página que necesite un botón.<br><br> Este elemento tiene dos parametros: <b>content:</b> de tipo <em>AITElement</em> o de tipo <em>HTMLElement</em>, el cual es requerido, y <b>options:</b> de tipo <em>ButtonElementOptions</em>, el cual es opcional.<br><br> Las opciones disponibles de tipo <em>ButtonElementOptions</em> son: <b>type</b>, <b>disabled</b>, <b>class</b>, <b>node</b> y <b>target</b>"
+    descXButton = "El elemento <b>XAppButton</b> representa un elemento cliqueable de tipo botón que puede ser utilizado en formularios o en cualquier parte de la página que necesite un botón.<br><br> Este elemento tiene un parametro requerido: <b>config:</b> de tipo <em>XAppButtonActionConfig</em>.<br><br> Las opciones disponibles de tipo <em>XAppButtonActionConfig</em> son: <b>icon</b>, <b>type</b>, <b>text</b>, <b>disabled</b> y <b>size</b>"
+    descDiv = "El elemento <b>DivElement</b> no existe"
+    descVStack = "El elemento <b>VStack</b> representa un elemento que puede ser utilizado para crear secciones o agrupar contenidos con orientación vértical.<br><br> Este elemento tiene dos parametros: <b>elements:</b> un arreglo de tipo <em>HTMLElement</em> o de tipo <em>AITElement</em>, el cual es requerido, y <b>options:</b> de tipo <em>VStackConstructorOptions</em>, el cual es opcional.<br><br> Las opciones de tipo <em>VStackConstructorOptions</em> son: <b>type</b>, <b>node</b> y <b>class</b>"
+    descHStack = "El elemento <b>HStack</b> representa un elemento que puede ser utilizado para crear secciones o agrupar contenidos con orientación horizontal.<br><br> Este elemento tiene dos parametros: <b>elements:</b> un arreglo de tipo <em>HTMLElement</em> o de tipo <em>AITElement</em>, el cual es requerido, y <b>options:</b> de tipo <em>HStackConstructorOptions</em>, el cual es opcional.<br><br> Las opciones de tipo <em>HStackConstructorOptions</em> son: <b>type</b>, <b>node</b> y <b>class</b>"
+    descTable = "El Elemento <b>Table</b> representa un elemento para agrupar datos en dos o mas dimensiones.<br><br> Este elemento tiene dos objetos como parametros: <b>columns</b>, el cual es requerido, y <b>options:</b>, el cual es opcional.<br><br>El objeto <em>columns</em> tiene como parametros requeridos: <b>header:</b> de tipo <em>TableColumnHeaderOptions</em> y <b>data:</b>, el cual a su vez es un objeto formado por <b>_row:</b> de tipo <em>RowType</em>, <b>_id:</b> de tipo <em>number</em>.<br><br>En el parametro options solo existe un parametro: <b>outsideBorder:</b>de tipo <em>boolean</em>"
+    descSelect = "El elemento <b>SelectElement</b> representa un elemento de control que muestra un menú de opciones<br><br>Este elemento tiene un parametro opcional llamado <b>options:</b> de tipo <em>AITSelectOptions</em>.<br><br>Las opciones disponibles de tipo <em>AITSelectOptions</em> son: <b>buttonIcon:</b> de tipo <em>HTMLElement</em> o de tipo <em>AITElement</em>, <b>title:</b> de tipo <em>string</em>, <b>placeholder:</b> de tipo <em>string</em> y un metodo <b>setValue:</b> con parametros <b>select:</b> de tipo <em>SelectElement</em> y <b>value:</b> de tipo <em>string</em>"
+    descInput = "El elemento <b>InputElement</b> representa un elemento que se puede usar para crear controles interactivos, con el fin de recibir datos del usuario.<br><br>Este elemento tiene un parametro opcional llamado <b>options:</b> de tipo <em>InputElementOptions</em>.<br><br>Las opciones disponibles de tipo son: un metodo <b>setValue:</b> con los parametros: <b>select:</b> de tipo <em>InputElement</em> y <b>value:</b> de tipo <em>string</em>, <b>placeholder:</b> de tipo <em>string</em>, <b>alignment?:</b> de tipo <em>TextAlignment</em>, <b>prefix?:</b> de tipo <em>InputElementPrefix</em>, <b>maxLength:</b> de tipo <em>number</em>, <b>typeNumber:</b> de <em>tipo boolean</em>"
+    descCheckbox = ""
     stylei = "text-cyan-300";
     stylev = "text-teal-300";
     stylel = "text-red-300";
     styler = "text-purple-300";
     stylen = "text-blue-400";
     stylef = "text-yellow-300";
-
+    
     constructor() {
         super();
 
@@ -87,7 +97,7 @@ new TextElement("Hola a todos",{
         
         let textElm = new TextElement("Hola a todos", { class: ["border","p-2","rounded"] });
         
-        exampleBlockContent(this.lorem,code,textElm,this.centerContainer,true,id);
+        exampleBlockContent(this.descTexto,code,textElm,this.centerContainer,true,id);
     }
 
     exmapleContentButton(id:string) {
@@ -102,7 +112,7 @@ new ButtonElement("Click aquí",{
         `;
         let output = `<b>output:</b> <button onclick="alert('hola cómo estas')" class="ml-[1em] transition px-3 py-[.35em] bg-red-500 hover:bg-red-600 text-white rounded-sm shadow">click aquí</button>`;
 
-        exampleBlockContent(this.lorem,code,null,this.centerContainer,true,id);
+        exampleBlockContent(this.descButton,code,null,this.centerContainer,true,id);
     }
 
     exmapleContentXButton(id:string) {
@@ -110,7 +120,7 @@ new ButtonElement("Click aquí",{
         let output = `<b>output:</b> <button onclick="alert('Hola a todos')" class="ml-[1em] bg-blue-700 hover:bg-blue-800 text-white rounded-sm px-3 py-1" id="auth-verify-relation">Verificar</button>`;
 
         let html = false
-        exampleBlockContent(this.lorem,code,null,this.centerContainer,html,id);
+        exampleBlockContent(this.descXButton,code,null,this.centerContainer,html,id);
     }
 
     exmapleContentDiv(id:string) {
@@ -122,7 +132,7 @@ new DivElement(
         `;
         let output = `<b>output:</b> <span class="ml-[1em] px-3 py-1 border border-gray-200">Saludos</span>`;
 
-        exampleBlockContent(this.lorem,code,null,this.centerContainer,true,id);
+        exampleBlockContent(this.descDiv,code,null,this.centerContainer,true,id);
     }
 
     exmapleContentVStack(id:string) {
@@ -144,7 +154,7 @@ VStack([
             </p>
         </div>`;
 
-        exampleBlockContent(this.lorem,code,null,this.centerContainer,true,id);
+        exampleBlockContent(this.descVStack,code,null,this.centerContainer,true,id);
     }
 
     exmapleContentHStack(id:string) {
@@ -166,7 +176,7 @@ HStack([
             </p>
         </div>`;
 
-        exampleBlockContent(this.lorem,code,null,this.centerContainer,true,id);
+        exampleBlockContent(this.descHStack,code,null,this.centerContainer,true,id);
     }
 
     exmapleContentTable(id:string) {
@@ -217,7 +227,7 @@ tbl.data = sourceData;
             <table>
         </div>`;
 
-        exampleBlockContent(this.lorem,code,null,this.centerContainer,true,id);
+        exampleBlockContent(this.descTable,code,null,this.centerContainer,true,id);
     }
 
     exmapleContentSelect(id:string) {
@@ -256,7 +266,7 @@ slct.data = [{
                 </select>
             </div>
         </div>`;
-        exampleBlockContent(this.lorem,code,null,this.centerContainer,true,id);
+        exampleBlockContent(this.descSelect,code,null,this.centerContainer,true,id);
     }
 
     exmapleContentInput(id:string) {
@@ -287,7 +297,7 @@ let inpText = new InputElement({
             </div>
         </div>`;
 
-        exampleBlockContent(this.lorem,code,null,this.centerContainer,true,id);
+        exampleBlockContent(this.descInput,code,null,this.centerContainer,true,id);
     }
 }
 
